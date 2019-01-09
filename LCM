@@ -1,0 +1,39 @@
+def lcm_of_n_no(rng):#function of lcm
+    def prime_range(x):                                #prime function of n no
+        prime=[]
+        for p in range(2,x+1):
+            count=0
+            for r in range(2,p+1):
+                if((p%r==0)and(p!=r)):
+                    count=count+1
+            if(count==0):
+                prime.append(p)       
+        return prime 
+    ls=[]
+    ns=[]
+    print("enter the values")
+    for i in range(x):                                   #input of list ls
+        y=int(input())
+        ls.append(y)
+    ls.sort(reverse=True)
+    y=prime_range(ls[0])
+    i=0
+    while(i<(len(y))):
+        count=0
+        for j in range(x):
+            if(ls[j]%y[i]==0):
+                sw=int(ls[j]/y[i])
+                ls[j],sw=sw,ls[j]
+                sw=0
+                count=count+1        
+        if(count>0):
+            ns.append(y[i])
+        else:
+            i=i+1
+    lcm=1        
+    for f in range(len(ns)):
+        lcm=lcm*ns[f]
+    return(lcm)  
+x=int(input("enter the no of values")) 
+LCM=lcm_of_n_no(x)
+print(LCM)
